@@ -24,229 +24,224 @@ body{
   width:100%;
   max-width:520px;
   margin:auto;
-  padding:20px 15px 35px;
+  padding:20px 15px 40px;
 }
 
 .header{
   text-align:center;
-  padding:25px 10px;
+  padding:15px 0 22px;
 }
 
 .logo{
-  font-size:42px;
-  margin-bottom:8px;
-}
-
-.header h1{
   font-size:30px;
-  margin-bottom:7px;
-}
-
-.header p{
-  color:#9ca6bd;
-  font-size:14px;
-}
-
-/* CATEGORY */
-
-.categories{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:16px;
-}
-
-.category{
-  border:1px solid #344362;
-  background:#121a2d;
-  color:white;
-  padding:15px 8px;
-  border-radius:13px;
-  cursor:pointer;
-  text-align:center;
-  font-size:14px;
   font-weight:bold;
+  color:#00eaff;
 }
 
-.category.active{
-  border-color:#22c55e;
-  background:#183b2b;
+.subtitle{
+  color:#aab4cc;
+  margin-top:7px;
+  font-size:14px;
 }
-
-.category-icon{
-  display:block;
-  font-size:25px;
-  margin-bottom:7px;
-}
-
-/* CARD */
 
 .card{
-  background:#121a2d;
-  border:1px solid #263452;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  background:#111a2d;
+  border:1px solid #273552;
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
 
 .card-title{
   font-size:20px;
   font-weight:bold;
-  margin-bottom:18px;
+  margin-bottom:15px;
 }
 
 label{
   display:block;
-  font-size:14px;
-  font-weight:bold;
   margin-bottom:8px;
-  color:#dce3f2;
+  font-size:14px;
+  color:#cbd4e8;
 }
 
-input{
+.uid-input{
   width:100%;
   padding:14px;
   border-radius:10px;
   border:1px solid #344362;
-  background:#0b1122;
-  color:white;
+  background:#19233b;
+  color:#fff;
   font-size:16px;
   outline:none;
   margin-bottom:18px;
 }
 
-input:focus{
-  border-color:#3b82f6;
+.uid-input:focus{
+  border-color:#00eaff;
 }
 
-/* PACKAGES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-bottom:18px;
+}
+
+.category{
+  padding:12px 8px;
+  border:1px solid #344362;
+  background:#19233b;
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+  text-align:center;
+  font-size:13px;
+}
+
+.category.active{
+  background:#00a9c7;
+  border-color:#00eaff;
+  color:#fff;
+}
 
 .packages{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(2,1fr);
   gap:10px;
 }
 
 .package{
-  border:1px solid #344362;
   background:#19233b;
-  color:white;
-  padding:15px 8px;
-  border-radius:12px;
+  border:1px solid #344362;
+  border-radius:11px;
+  padding:14px 10px;
   cursor:pointer;
   text-align:center;
 }
 
 .package:hover{
-  background:#22304e;
+  border-color:#00eaff;
 }
 
 .package.active{
-  border-color:#22c55e;
-  background:#183b2b;
+  border:2px solid #00eaff;
+  background:#102e3d;
 }
 
 .package-name{
-  font-size:16px;
-  font-weight:bold;
-  margin-bottom:6px;
-}
-
-.package-info{
-  color:#b8c2d6;
-  font-size:13px;
-  margin-bottom:6px;
-}
-
-.price{
-  color:#9ee6b5;
   font-size:15px;
   font-weight:bold;
+  margin-bottom:6px;
 }
 
-/* SUMMARY */
+.package-price{
+  color:#00eaff;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.payment-section{
+  margin-top:20px;
+}
+
+.payment-title{
+  font-size:17px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.payment-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px;
+  margin-bottom:9px;
+  background:#19233b;
+  border:1px solid #344362;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.payment-option input{
+  width:auto;
+  margin:0;
+}
+
+.payment-option span{
+  font-size:15px;
+}
 
 .summary{
-  background:#0b1122;
-  border-radius:12px;
-  padding:15px;
+  background:#0c1426;
+  border:1px solid #273552;
+  border-radius:11px;
+  padding:14px;
   margin-top:18px;
+}
+
+.summary-title{
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
 .summary-row{
   display:flex;
   justify-content:space-between;
   gap:10px;
-  padding:8px 0;
-  color:#b8c2d6;
-  border-bottom:1px solid #202c45;
+  padding:5px 0;
+  color:#cbd4e8;
+  font-size:14px;
 }
 
-.summary-row:last-child{
-  border-bottom:none;
+.summary-price{
+  color:#00eaff;
+  font-weight:bold;
 }
-
-.summary-row strong{
-  color:white;
-  text-align:right;
-  max-width:60%;
-  overflow-wrap:anywhere;
-}
-
-.total{
-  font-size:18px;
-}
-
-/* BUTTON */
 
 .btn{
   width:100%;
-  border:none;
+  border:0;
   border-radius:11px;
   padding:15px;
   margin-top:18px;
-  background:#22c55e;
-  color:white;
-  font-size:17px;
+  background:#00b8d9;
+  color:#fff;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
 }
 
 .btn:hover{
-  background:#16a34a;
+  background:#00a4c2;
 }
 
 .security{
   text-align:center;
-  color:#9ca6bd;
-  font-size:13px;
-  line-height:1.6;
-  margin-top:15px;
+  color:#9ba8c0;
+  font-size:12px;
+  margin-top:13px;
+  line-height:1.5;
 }
 
 .notice{
-  background:#172033;
-  border:1px solid #293750;
-  border-radius:12px;
-  padding:14px;
-  margin-top:16px;
-  color:#aeb9ce;
-  font-size:13px;
-  line-height:1.6;
-}
-
-footer{
   text-align:center;
-  color:#68738a;
+  background:#171f33;
+  border:1px solid #293752;
+  border-radius:10px;
+  padding:12px;
+  color:#aeb9cf;
   font-size:12px;
-  padding-top:15px;
+  line-height:1.5;
+  margin-top:15px;
 }
 
-@media(max-width:380px){
-  .packages{
-    grid-template-columns:1fr;
-  }
+.footer{
+  text-align:center;
+  color:#6f7d98;
+  font-size:12px;
+  margin-top:20px;
 }
 </style>
 </head>
@@ -255,231 +250,341 @@ footer{
 
 <div class="container">
 
-<header class="header">
-  <div class="logo">💎</div>
-  <h1>RS TOP-UP</h1>
-  <p>Free Fire Top-Up Center</p>
-</header>
-
-
-<!-- CATEGORIES -->
-
-<div class="categories">
-
-  <button class="category active"
-    onclick="changeCategory('diamond',this)">
-    <span class="category-icon">💎</span>
-    Diamond
-  </button>
-
-  <button class="category"
-    onclick="changeCategory('weekly',this)">
-    <span class="category-icon">📅</span>
-    Weekly
-  </button>
-
-  <button class="category"
-    onclick="changeCategory('weeklylite',this)">
-    <span class="category-icon">⚡</span>
-    Weekly Lite
-  </button>
-
-  <button class="category"
-    onclick="changeCategory('monthly',this)">
-    <span class="category-icon">🗓️</span>
-    Monthly
-  </button>
-
-  <button class="category"
-    onclick="changeCategory('levelup',this)">
-    <span class="category-icon">🎟️</span>
-    Level Up Pass
-  </button>
-
-</div>
-
-
-<div class="card">
-
-  <div class="card-title" id="categoryTitle">
-    💎 Diamond Top-Up
+  <div class="header">
+    <div class="logo">RS TOP-UP</div>
+    <div class="subtitle">Free Fire Diamond & Membership</div>
   </div>
 
-  <label for="uid">Free Fire UID</label>
+  <div class="card">
 
-  <input
-    type="text"
-    id="uid"
-    placeholder="Enter your Free Fire UID"
-    inputmode="numeric"
-    autocomplete="off"
-    maxlength="20"
-  >
-
-  <label>Select Package</label>
-
-  <div class="packages" id="packages"></div>
-
-
-  <div class="summary">
-
-    <div class="summary-row">
-      <span>UID</span>
-      <strong id="summaryUID">Not entered</strong>
+    <div class="card-title" id="categoryTitle">
+      💎 Diamond Top-Up
     </div>
 
-    <div class="summary-row">
-      <span>Package</span>
-      <strong id="summaryPackage">Not selected</strong>
+    <label>Free Fire UID</label>
+
+    <input
+      type="text"
+      id="uid"
+      class="uid-input"
+      placeholder="Enter your Free Fire UID"
+      inputmode="numeric"
+      autocomplete="off"
+      maxlength="20"
+    >
+
+    <label>Select Category</label>
+
+    <div class="categories">
+
+      <div
+        class="category active"
+        onclick="changeCategory('diamond',this)">
+        💎 Diamond
+      </div>
+
+      <div
+        class="category"
+        onclick="changeCategory('topup',this)">
+        🔥 Top-Up
+      </div>
+
+      <div
+        class="category"
+        onclick="changeCategory('weekly',this)">
+        📅 Weekly
+      </div>
+
+      <div
+        class="category"
+        onclick="changeCategory('weeklyLite',this)">
+        ⚡ Weekly Lite
+      </div>
+
+      <div
+        class="category"
+        onclick="changeCategory('monthly',this)">
+        🗓️ Monthly
+      </div>
+
+      <div
+        class="category"
+        onclick="changeCategory('levelup',this)">
+        🎟️ Level Up Pass
+      </div>
+
     </div>
 
-    <div class="summary-row total">
-      <span>Total</span>
-      <strong id="summaryPrice">৳0</strong>
+    <label>Select Package</label>
+
+    <div
+      class="packages"
+      id="packages">
+    </div>
+
+    <div class="payment-section">
+
+      <div class="payment-title">
+        Payment Method
+      </div>
+
+      <label class="payment-option">
+
+        <input
+          type="radio"
+          name="payment"
+          value="bKash"
+        >
+
+        <span>📱 bKash</span>
+
+      </label>
+
+      <label class="payment-option">
+
+        <input
+          type="radio"
+          name="payment"
+          value="Nagad"
+        >
+
+        <span>📱 Nagad</span>
+
+      </label>
+
+    </div>
+
+    <div class="summary">
+
+      <div class="summary-title">
+        Order Summary
+      </div>
+
+      <div class="summary-row">
+        <span>UID</span>
+        <span id="summaryUID">Not entered</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Package</span>
+        <span id="summaryPackage">Not selected</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Price</span>
+        <span
+          class="summary-price"
+          id="summaryPrice">
+          ৳0
+        </span>
+      </div>
+
+    </div>
+
+    <button
+      class="btn"
+      onclick="continueOrder()">
+      CONTINUE ORDER
+    </button>
+
+    <div class="security">
+      🔒 Your Free Fire password and OTP are never required.
+    </div>
+
+    <div class="notice">
+      ⚠️ Payment gateway is currently in demo mode.
+      Real bKash/Nagad payment and automatic top-up
+      are not connected yet.
     </div>
 
   </div>
 
-
-  <button class="btn" onclick="continueOrder()">
-    CONTINUE ORDER
-  </button>
-
-
-  <div class="security">
-    🔒 কোনো Free Fire password বা OTP প্রয়োজন নেই।
+  <div class="footer">
+    © 2026 RS TOP-UP
   </div>
-
-
-  <div class="notice">
-    ⚠️ বর্তমানে এটি website/order interface।
-    Payment এবং real diamond/membership delivery এখনো সংযুক্ত করা হয়নি।
-  </div>
-
-</div>
-
-
-<footer>
-  © 2026 RS TOP-UP
-</footer>
 
 </div>
 
 
 <script>
 
-let currentCategory = "diamond";
 let selectedPackage = "";
 let selectedPrice = 0;
+let currentCategory = "diamond";
 
-
-/* PACKAGE DATA */
 
 const packageData = {
 
   diamond: [
-    ["💎 100 Diamonds","100 Diamonds",80],
-    ["💎 310 Diamonds","310 Diamonds",220],
-    ["💎 520 Diamonds","520 Diamonds",350],
-    ["💎 1060 Diamonds","1060 Diamonds",700]
+    {
+      name:"100 Diamonds",
+      price:80
+    },
+    {
+      name:"310 Diamonds",
+      price:220
+    },
+    {
+      name:"520 Diamonds",
+      price:350
+    },
+    {
+      name:"1060 Diamonds",
+      price:700
+    }
+  ],
+
+  topup: [
+    {
+      name:"100 Diamonds Top-Up",
+      price:80
+    },
+    {
+      name:"310 Diamonds Top-Up",
+      price:220
+    },
+    {
+      name:"520 Diamonds Top-Up",
+      price:350
+    },
+    {
+      name:"1060 Diamonds Top-Up",
+      price:700
+    }
   ],
 
   weekly: [
-    ["📅 Weekly","Weekly Membership",150],
-    ["📅 Weekly Plus","Weekly Membership",250]
+    {
+      name:"Weekly Membership",
+      price:150
+    },
+    {
+      name:"Weekly Plus",
+      price:250
+    }
   ],
 
-  weeklylite: [
-    ["⚡ Weekly Lite","Weekly Lite",80],
-    ["⚡ Weekly Lite Plus","Weekly Lite",120]
+  weeklyLite: [
+    {
+      name:"Weekly Lite",
+      price:80
+    },
+    {
+      name:"Weekly Lite Plus",
+      price:120
+    }
   ],
 
   monthly: [
-    ["🗓️ Monthly","Monthly Membership",450],
-    ["🗓️ Monthly Plus","Monthly Membership",650]
+    {
+      name:"Monthly Membership",
+      price:450
+    },
+    {
+      name:"Monthly Plus",
+      price:650
+    }
   ],
 
   levelup: [
-    ["🎟️ Level Up Pass","Level Up Pass",250],
-    ["🎟️ Level Up Pass Plus","Level Up Pass",400]
+    {
+      name:"Level Up Pass",
+      price:250
+    },
+    {
+      name:"Level Up Pass Plus",
+      price:400
+    }
   ]
 
 };
 
 
-/* CATEGORY CHANGE */
+const categoryTitles = {
 
-function changeCategory(category,button){
+  diamond:"💎 Diamond Top-Up",
+
+  topup:"🔥 Top-Up",
+
+  weekly:"📅 Weekly Membership",
+
+  weeklyLite:"⚡ Weekly Lite",
+
+  monthly:"🗓️ Monthly Membership",
+
+  levelup:"🎟️ Level Up Pass"
+
+};
+
+
+function changeCategory(category, element){
 
   currentCategory = category;
+
+  document
+    .querySelectorAll(".category")
+    .forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+  element.classList.add("active");
+
+  document.getElementById("categoryTitle")
+    .textContent = categoryTitles[category];
 
   selectedPackage = "";
   selectedPrice = 0;
 
-  document.querySelectorAll(".category").forEach(function(item){
-    item.classList.remove("active");
-  });
-
-  button.classList.add("active");
-
-  const titles = {
-
-    diamond:"💎 Diamond Top-Up",
-    weekly:"📅 Weekly Membership",
-    weeklylite:"⚡ Weekly Lite",
-    monthly:"🗓️ Monthly Membership",
-    levelup:"🎟️ Level Up Pass"
-
-  };
-
-  document.getElementById("categoryTitle").textContent =
-    titles[category];
-
-  document.getElementById("summaryPackage").textContent =
-    "Not selected";
-
-  document.getElementById("summaryPrice").textContent =
-    "৳0";
+  updateSummary();
 
   showPackages(category);
+
 }
 
 
-/* SHOW PACKAGES */
-
 function showPackages(category){
 
-  const container = document.getElementById("packages");
+  const container =
+    document.getElementById("packages");
 
   container.innerHTML = "";
 
   packageData[category].forEach(function(item){
 
-    const button = document.createElement("button");
+    const button =
+      document.createElement("div");
 
     button.className = "package";
 
     button.innerHTML =
-      '<div class="package-name">' + item[0] + '</div>' +
-      '<div class="package-info">' + item[1] + '</div>' +
-      '<div class="price">৳' + item[2] + '</div>';
+
+      '<div class="package-name">' +
+      item.name +
+      '</div>' +
+
+      '<div class="package-price">' +
+      '৳' + item.price +
+      '</div>';
 
     button.onclick = function(){
 
-      document.querySelectorAll(".package").forEach(function(p){
-        p.classList.remove("active");
-      });
+      document
+        .querySelectorAll(".package")
+        .forEach(function(pkg){
+
+          pkg.classList.remove("active");
+
+        });
 
       button.classList.add("active");
 
-      selectedPackage = item[1];
-      selectedPrice = item[2];
+      selectedPackage = item.name;
+      selectedPrice = item.price;
 
-      document.getElementById("summaryPackage").textContent =
-        selectedPackage;
+      updateSummary();
 
-      document.getElementById("summaryPrice").textContent =
-        "৳" + selectedPrice;
     };
 
     container.appendChild(button);
@@ -489,53 +594,122 @@ function showPackages(category){
 }
 
 
-/* UID */
+function updateSummary(){
 
-document.getElementById("uid").addEventListener("input",function(){
+  const uid =
+    document.getElementById("uid").value.trim();
 
-  this.value = this.value.replace(/[^0-9]/g,"");
-
-  const uid = this.value.trim();
-
-  document.getElementById("summaryUID").textContent =
+  document.getElementById("summaryUID")
+    .textContent =
     uid === "" ? "Not entered" : uid;
 
-});
+  document.getElementById("summaryPackage")
+    .textContent =
+    selectedPackage === ""
+    ? "Not selected"
+    : selectedPackage;
+
+  document.getElementById("summaryPrice")
+    .textContent =
+    "৳" + selectedPrice;
+
+}
 
 
-/* ORDER */
+document
+  .getElementById("uid")
+  .addEventListener("input", function(){
+
+    this.value =
+      this.value.replace(/[^0-9]/g,"");
+
+    updateSummary();
+
+  });
+
 
 function continueOrder(){
 
   const uid =
     document.getElementById("uid").value.trim();
 
+
   if(uid === ""){
-    alert("Please enter your Free Fire UID.");
+
+    alert(
+      "Please enter your Free Fire UID."
+    );
+
     return;
+
   }
+
 
   if(selectedPackage === ""){
-    alert("Please select a package.");
+
+    alert(
+      "Please select a package."
+    );
+
     return;
+
   }
 
+
+  const payment =
+    document.querySelector(
+      'input[name="payment"]:checked'
+    );
+
+
+  if(!payment){
+
+    alert(
+      "Please select bKash or Nagad."
+    );
+
+    return;
+
+  }
+
+
   const orderId =
-    "RS" + Date.now().toString().slice(-8);
+    "RS" +
+    Date.now()
+      .toString()
+      .slice(-8);
+
 
   alert(
+
     "Order Preview\n\n" +
-    "Order ID: " + orderId + "\n" +
-    "UID: " + uid + "\n" +
-    "Package: " + selectedPackage + "\n" +
-    "Price: ৳" + selectedPrice + "\n\n" +
-    "Payment and real delivery are not connected yet."
+
+    "Order ID: " +
+    orderId +
+    "\n" +
+
+    "UID: " +
+    uid +
+    "\n" +
+
+    "Package: " +
+    selectedPackage +
+    "\n" +
+
+    "Price: ৳" +
+    selectedPrice +
+    "\n" +
+
+    "Payment: " +
+    payment.value +
+    "\n\n" +
+
+    "Payment gateway is not connected yet."
+
   );
 
 }
 
-
-/* FIRST LOAD */
 
 showPackages("diamond");
 
