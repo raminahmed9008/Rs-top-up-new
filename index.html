@@ -3,154 +3,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>RS TOP-UP | Free Fire</title>
+<title>RS TOP-UP</title>
 
 <style>
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,sans-serif;
 }
 
 body{
-  background:#f5f7fc;
-  color:#172b4d;
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  background:#f4f7fb;
+  color:#172b45;
+  padding-bottom:82px;
 }
 
+button,input{
+  font-family:inherit;
+}
+
+.app{
+  width:100%;
+  max-width:700px;
+  margin:auto;
+}
+
+/* ================= HEADER ================= */
+
 .header{
-  background:white;
-  padding:16px 18px;
+  height:82px;
+  background:#fff;
+  border-bottom:1px solid #e1e5eb;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  padding:0 20px;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:50;
 }
 
 .logo{
-  font-size:25px;
+  font-size:29px;
   font-weight:900;
-  color:#722cff;
+  letter-spacing:-1.5px;
+  color:#111;
 }
 
 .logo span{
-  color:#222;
+  color:#873de8;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .balance{
-  background:#8b3df5;
+  background:linear-gradient(135deg,#9b3df2,#7a32dc);
   color:white;
-  padding:11px 17px;
-  border-radius:25px;
-  font-weight:bold;
+  padding:12px 20px;
+  border-radius:28px;
+  font-weight:800;
+  box-shadow:0 5px 15px rgba(126,50,220,.25);
 }
 
-.container{
-  max-width:720px;
-  margin:auto;
-  padding:15px;
-  padding-bottom:40px;
+.avatar{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#6871c7;
+  color:#fff;
+  font-size:23px;
+  border:4px solid white;
+  outline:2px solid #ddd;
 }
+
+/* ================= HOME ================= */
 
 .notice{
+  margin:13px;
   background:white;
-  border-radius:12px;
-  padding:13px;
-  margin-bottom:15px;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-  text-align:center;
+  border:1px solid #ddd;
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+.notice-title{
+  background:#9140ea;
+  color:white;
+  padding:15px 17px;
   font-weight:bold;
 }
 
-.hero{
-  background:linear-gradient(135deg,#7629e9,#b06cff);
-  color:white;
-  border-radius:18px;
-  padding:25px 18px;
-  margin-bottom:20px;
+.notice-text{
+  padding:10px 14px;
+  flex:1;
+  font-size:14px;
 }
 
-.hero h1{
-  font-size:27px;
-  margin-bottom:8px;
+.notice-close{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:0;
+  background:#913de8;
+  color:#fff;
+  margin-right:7px;
+  font-size:20px;
 }
 
-.hero p{
-  opacity:.95;
-}
+/* BIG BANNER INTENTIONALLY HIDDEN */
 
-.section-title{
-  font-size:25px;
-  font-weight:900;
+/* ================= TOPUP ================= */
+
+.topup-title{
   text-align:center;
-  margin:22px 0 15px;
+  font-size:28px;
+  font-weight:900;
+  margin:25px 0 18px;
+  color:#193553;
 }
 
 .categories{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  padding:0 24px;
 }
 
 .category{
   background:white;
-  border:2px solid #e4ddf8;
-  border-radius:15px;
-  padding:18px 10px;
-  text-align:center;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid #ddd;
+  box-shadow:0 2px 5px rgba(0,0,0,.04);
   cursor:pointer;
   transition:.2s;
 }
 
 .category:hover{
-  border-color:#8b3df5;
   transform:translateY(-2px);
 }
 
-.category.active{
-  border-color:#8b3df5;
-  box-shadow:0 4px 15px rgba(139,61,245,.2);
+.category-image{
+  height:165px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:900;
+  text-align:center;
+  padding:15px;
+  font-size:22px;
 }
 
-.category-icon{
-  font-size:38px;
-  margin-bottom:8px;
+.diamond-bg{
+  background:linear-gradient(145deg,#32105d,#8c35e8,#251044);
+}
+
+.weekly-bg{
+  background:linear-gradient(145deg,#35105d,#8737e8,#261044);
+}
+
+.lite-bg{
+  background:linear-gradient(145deg,#32105d,#7c36dd,#261044);
+}
+
+.level-bg{
+  background:linear-gradient(145deg,#32105d,#8839e8,#24103f);
+}
+
+.category-image span{
+  text-shadow:0 3px 4px rgba(0,0,0,.35);
 }
 
 .category-name{
-  font-weight:800;
-  font-size:15px;
-}
-
-.panel{
-  background:white;
-  border-radius:16px;
-  margin-top:20px;
-  padding:18px;
-  box-shadow:0 2px 10px rgba(0,0,0,.07);
-}
-
-.panel-title{
-  font-size:21px;
-  font-weight:900;
-  margin-bottom:18px;
-}
-
-.step{
-  display:inline-flex;
+  height:66px;
+  display:flex;
   align-items:center;
   justify-content:center;
-  width:32px;
-  height:32px;
-  background:#8b3df5;
-  color:white;
-  border-radius:50%;
-  margin-right:8px;
+  text-align:center;
+  color:#111;
+  font-size:15px;
+  font-weight:700;
 }
+
+.category:nth-child(4){
+  width:calc((100% - 36px)/3);
+}
+
+/* ================= PRODUCT PAGE ================= */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.product-banner{
+  margin:20px 13px 13px;
+  min-height:160px;
+  border:1px solid #ddd;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 85% 20%,#eee2ff,transparent 35%),
+    linear-gradient(110deg,#fff,#faf6ff);
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:20px;
+}
+
+.product-icon{
+  width:112px;
+  height:112px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#31105d,#913be8);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  text-align:center;
+  font-weight:900;
+  font-size:18px;
+  flex-shrink:0;
+}
+
+.product-info h1{
+  font-size:27px;
+  color:#101820;
+  margin-bottom:12px;
+}
+
+.speed{
+  display:inline-block;
+  background:#f2eaff;
+  color:#9340dd;
+  border-radius:22px;
+  padding:8px 13px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+/* ================= STEP BOX ================= */
+
+.step-box{
+  margin:13px;
+  background:#fff;
+  border:1px solid #dfe3e8;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.step-head{
+  min-height:66px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:12px;
+  border-bottom:1px solid #e5e5e5;
+}
+
+.step-number{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#913de8;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+  font-weight:900;
+}
+
+.step-head h2{
+  font-family:Georgia,serif;
+  color:#111;
+  font-size:25px;
+}
+
+.step-body{
+  padding:18px 13px;
+}
+
+/* ================= PACKAGES ================= */
 
 .packages{
   display:grid;
@@ -159,163 +306,359 @@ body{
 }
 
 .package{
-  background:white;
-  border:1px solid #d8dce5;
-  border-radius:12px;
-  padding:18px 10px;
+  min-height:100px;
+  border:1px solid #d7dce2;
+  background:#fff;
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-align:center;
   cursor:pointer;
-  transition:.2s;
+  padding:12px 7px;
+  transition:.15s;
 }
 
 .package:hover{
-  border-color:#8b3df5;
+  border-color:#9a4ae8;
 }
 
 .package.selected{
-  border:2px solid #8b3df5;
-  background:#faf7ff;
+  border:2px solid #8d3de5;
+  background:#faf6ff;
+  position:relative;
+}
+
+.package.selected:before{
+  content:"✓";
+  position:absolute;
+  top:0;
+  left:0;
+  background:#913de8;
+  color:white;
+  width:35px;
+  height:30px;
+  border-radius:9px 0 15px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
 }
 
 .package-name{
-  font-size:16px;
-  font-weight:800;
-  line-height:1.35;
+  font-family:Georgia,serif;
+  font-size:17px;
+  font-weight:bold;
+  line-height:1.3;
 }
 
 .package-price{
-  color:#8b3df5;
+  color:#9141db;
+  font-size:16px;
   font-weight:900;
   margin-top:8px;
-  font-size:17px;
 }
 
-label{
-  display:block;
+.how-order{
+  margin-top:18px;
+  color:#3488a0;
+  font-size:20px;
   font-weight:bold;
+}
+
+/* ================= ACCOUNT ================= */
+
+.account-label{
+  font-size:20px;
+  color:#111;
   margin-bottom:8px;
 }
 
-.input{
+.uid-input{
   width:100%;
-  padding:14px;
-  border:1px solid #bfc7d8;
-  border-radius:10px;
-  font-size:16px;
+  height:61px;
+  border:2px solid #abc9e8;
+  border-radius:9px;
+  padding:0 15px;
+  font-size:18px;
   outline:none;
 }
 
-.input:focus{
-  border-color:#8b3df5;
+.uid-input:focus{
+  border-color:#913de8;
 }
 
-.check-btn{
+.check-name{
   width:100%;
+  height:54px;
+  border:0;
+  border-radius:8px;
   margin-top:10px;
-  padding:13px;
-  border:none;
-  border-radius:10px;
-  background:#8b3df5;
+  background:linear-gradient(135deg,#9a3df0,#8435e2);
   color:white;
-  font-size:16px;
+  font-size:19px;
   font-weight:bold;
   cursor:pointer;
+}
+
+.game-result{
+  display:none;
+  margin-top:10px;
+  padding:10px;
+  border-radius:8px;
+  background:#edf9f0;
+  color:#23813a;
+  font-weight:bold;
+}
+
+/* ================= PAYMENT ================= */
+
+.payment-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
 }
 
 .payment{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.payment-option{
-  border:1px solid #d8dce5;
+  border:2px solid #ddd;
+  min-height:125px;
   border-radius:12px;
-  padding:15px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
   cursor:pointer;
-  text-align:center;
+  position:relative;
+}
+
+.payment.selected{
+  border-color:#913de8;
+  background:#fbf7ff;
+}
+
+.payment.selected:before{
+  content:"✓";
+  position:absolute;
+  top:0;
+  left:0;
+  width:34px;
+  height:30px;
+  background:#913de8;
+  color:#fff;
+  border-radius:10px 0 15px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.payment-logo{
+  font-size:25px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.bkash{
+  color:#e2136e;
+}
+
+.nagad{
+  color:#f58220;
+}
+
+.payment-name{
   font-weight:bold;
+  font-size:16px;
 }
 
-.payment-option input{
-  margin-right:7px;
-}
-
-.payment-option.selected{
-  border:2px solid #8b3df5;
-  background:#faf7ff;
-}
+/* ================= SUMMARY ================= */
 
 .summary{
-  background:#f7f4ff;
-  border-radius:12px;
+  background:#faf7ff;
+  border:1px solid #e5d9ff;
+  border-radius:10px;
   padding:15px;
-  margin-top:15px;
 }
 
 .summary-row{
   display:flex;
   justify-content:space-between;
-  padding:7px 0;
+  gap:15px;
+  padding:8px 0;
+  border-bottom:1px solid #eee;
+  font-size:14px;
+}
+
+.summary-row:last-child{
+  border-bottom:0;
 }
 
 .total{
-  border-top:1px solid #ddd;
-  margin-top:8px;
-  padding-top:10px;
-  font-size:19px;
+  font-size:20px;
   font-weight:900;
+  color:#8739dc;
 }
 
-.order-btn{
+/* ================= ORDER ================= */
+
+.order-button{
   width:100%;
-  padding:16px;
-  margin-top:18px;
+  height:56px;
   border:0;
-  border-radius:12px;
-  background:#8b3df5;
+  border-radius:9px;
+  background:#913de8;
   color:white;
-  font-size:18px;
+  font-size:19px;
   font-weight:900;
   cursor:pointer;
 }
 
-.order-btn:hover{
-  background:#7228d9;
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:75px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:100;
+  box-shadow:0 -3px 15px rgba(0,0,0,.08);
 }
 
-.info{
-  background:#fff8e8;
-  padding:12px;
-  border-radius:10px;
-  margin-top:15px;
-  font-size:14px;
-  line-height:1.5;
-}
-
-.footer{
+.nav-item{
   text-align:center;
-  padding:25px;
-  color:#777;
-  font-size:13px;
+  color:#606872;
+  font-size:11px;
 }
 
-@media(max-width:500px){
+.nav-icon{
+  font-size:24px;
+  display:block;
+  margin-bottom:3px;
+}
+
+.add-money{
+  width:62px;
+  height:62px;
+  margin-top:-32px;
+  border-radius:50%;
+  background:#913de8;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  border:5px solid white;
+  box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+  .header{
+    height:70px;
+    padding:0 13px;
+  }
+
+  .logo{
+    font-size:24px;
+  }
+
+  .balance{
+    padding:9px 14px;
+  }
+
+  .avatar{
+    width:47px;
+    height:47px;
+  }
 
   .categories{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:0 18px;
   }
 
-  .packages{
-    grid-template-columns:repeat(2,1fr);
+  .category-image{
+    height:125px;
+    font-size:16px;
   }
 
-  .category{
-    padding:15px 7px;
+  .category-name{
+    height:57px;
+    font-size:13px;
+  }
+
+  .category:nth-child(4){
+    width:calc((100% - 24px)/3);
+  }
+
+  .product-banner{
+    min-height:160px;
+    margin:15px 13px;
+  }
+
+  .product-icon{
+    width:100px;
+    height:100px;
+  }
+
+  .product-info h1{
+    font-size:23px;
+  }
+
+  .step-head h2{
+    font-size:22px;
+  }
+
+  .package-name{
+    font-size:15px;
+  }
+
+  .payment-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:420px){
+
+  .categories{
+    padding:0 13px;
+    gap:9px;
+  }
+
+  .category-image{
+    height:112px;
+  }
+
+  .category-name{
+    font-size:12px;
+  }
+
+  .product-banner{
+    gap:12px;
+    padding:14px;
+  }
+
+  .product-icon{
+    width:82px;
+    height:82px;
+    font-size:14px;
+  }
+
+  .product-info h1{
+    font-size:20px;
   }
 
   .package{
-    padding:15px 7px;
+    min-height:91px;
   }
 
   .package-name{
@@ -327,137 +670,178 @@ label{
 
 <body>
 
-<header class="header">
-  <div class="logo">
-    RS <span>TOP-UP</span>
-  </div>
+<div class="app">
 
-  <div class="balance">
-    💳 ৳0
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">RS TOP<span>UP</span></div>
+
+  <div class="header-right">
+    <div class="balance">▣ ৳0</div>
+    <div class="avatar">R</div>
   </div>
 </header>
 
-<main class="container">
+
+<!-- ================= HOME PAGE ================= -->
+
+<section id="homePage">
 
   <div class="notice">
-    🔔 RS TOP-UP — দ্রুত ও সহজ Free Fire Top-Up
+    <div class="notice-title">● NOTICE</div>
+    <div class="notice-text">
+      RS TOP-UP-এ অর্ডার করা মাত্রই পেমেন্ট প্রসেস শুরু হবে!
+    </div>
+    <button class="notice-close">×</button>
   </div>
 
-  <div class="hero">
-    <h1>FREE FIRE TOP-UP</h1>
-    <p>আপনার পছন্দের প্যাকেজ নির্বাচন করে অর্ডার করুন।</p>
-  </div>
+  <!-- বড় ব্যানার ইচ্ছা করে রাখা হয়নি -->
 
-  <div class="section-title">
-    TOPUP
-  </div>
-
-  <!-- CATEGORY -->
+  <div class="topup-title">TOPUP</div>
 
   <div class="categories">
 
-    <div class="category active" onclick="changeCategory('diamond',this)">
-      <div class="category-icon">💎</div>
+    <div class="category" onclick="openProduct('diamond')">
+      <div class="category-image diamond-bg">
+        <span>💎<br>DIAMOND<br>TOPUP</span>
+      </div>
       <div class="category-name">ID Code TopUp</div>
     </div>
 
-    <div class="category" onclick="changeCategory('weeklyMonthly',this)">
-      <div class="category-icon">📅</div>
-      <div class="category-name">Weekly / Monthly</div>
+    <div class="category" onclick="openProduct('weeklyMonthly')">
+      <div class="category-image weekly-bg">
+        <span>💎<br>WEEKLY<br>MONTHLY</span>
+      </div>
+      <div class="category-name">Weekly/Monthly</div>
     </div>
 
-    <div class="category" onclick="changeCategory('weeklyLite',this)">
-      <div class="category-icon">⚡</div>
+    <div class="category" onclick="openProduct('weeklyLite')">
+      <div class="category-image lite-bg">
+        <span>💎<br>WEEKLY<br>LITE</span>
+      </div>
       <div class="category-name">Weekly Lite</div>
     </div>
 
-    <div class="category" onclick="changeCategory('levelUp',this)">
-      <div class="category-icon">🎟️</div>
+    <div class="category" onclick="openProduct('levelUp')">
+      <div class="category-image level-bg">
+        <span>💎<br>LEVEL UP<br>PASS</span>
+      </div>
       <div class="category-name">Level Up Pass</div>
     </div>
 
   </div>
 
+</section>
 
-  <!-- PACKAGE -->
 
-  <div class="panel">
+<!-- ================= PRODUCT PAGE ================= -->
 
-    <div class="panel-title">
-      <span class="step">1</span>
-      Select Recharge
+<section id="productPage" class="page">
+
+  <div class="product-banner">
+
+    <div class="product-icon" id="productIcon">
+      DIAMOND<br>TOPUP
     </div>
 
-    <div id="packages" class="packages"></div>
+    <div class="product-info">
+      <h1 id="productTitle">ID Code TopUp</h1>
+      <div class="speed">⚡ ২ সেকেন্ডে টপআপ</div>
+    </div>
 
   </div>
 
 
-  <!-- ACCOUNT -->
+  <!-- STEP 1 -->
 
-  <div class="panel">
+  <div class="step-box">
 
-    <div class="panel-title">
-      <span class="step">2</span>
-      Account Info
+    <div class="step-head">
+      <div class="step-number">1</div>
+      <h2>Select Recharge</h2>
     </div>
 
-    <label>আপনার গেমের UID লিখুন</label>
+    <div class="step-body">
 
-    <input
-      id="uid"
-      class="input"
-      type="text"
-      inputmode="numeric"
-      maxlength="20"
-      autocomplete="off"
-      placeholder="এখানে আপনার গেমের UID লিখুন"
-    >
+      <div class="packages" id="packages"></div>
 
-    <button class="check-btn" onclick="checkGameName()">
-      আপনার গেম আইডির নাম চেক করুন
-    </button>
+      <div class="how-order">
+        ↗ কিভাবে অর্ডার করবেন? ➜
+      </div>
 
-    <div id="gameName" style="
-      margin-top:10px;
-      text-align:center;
-      font-weight:bold;
-      color:#722cff;
-    "></div>
+    </div>
 
   </div>
 
 
-  <!-- PAYMENT -->
+  <!-- STEP 2 -->
 
-  <div class="panel">
+  <div class="step-box">
 
-    <div class="panel-title">
-      <span class="step">3</span>
-      Select Payment
+    <div class="step-head">
+      <div class="step-number">2</div>
+      <h2>Account Info</h2>
     </div>
 
-    <div class="payment">
+    <div class="step-body">
 
-      <label class="payment-option">
-        <input
-          type="radio"
-          name="payment"
-          value="bKash"
-          onchange="selectPayment(this)"
-        >
-        📱 bKash
-      </label>
+      <div class="account-label">
+        এখানে আপনার গেমের আইডি কোড লিখুন
+      </div>
 
-      <label class="payment-option">
-        <input
-          type="radio"
-          name="payment"
-          value="Nagad"
-          onchange="selectPayment(this)"
-        >
-        📱 Nagad
-      </label>
+      <input
+        id="uid"
+        class="uid-input"
+        type="text"
+        inputmode="numeric"
+        maxlength="20"
+        placeholder="এখানে আপনার গেমের আইডি কোড লিখুন"
+      >
+
+      <button class="check-name" onclick="checkGameName()">
+        আপনার গেম আইডির নাম চেক করুন
+      </button>
+
+      <div class="game-result" id="gameResult">
+        ✓ Game ID পাওয়া গেছে — Demo Player
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- STEP 3 -->
+
+  <div class="step-box">
+
+    <div class="step-head">
+      <div class="step-number">3</div>
+      <h2>Select one option</h2>
+    </div>
+
+    <div class="step-body">
+
+      <div class="payment-grid">
+
+        <div class="payment"
+             onclick="selectPayment('bKash',this)">
+
+          <div class="payment-logo bkash">bKash</div>
+          <div class="payment-name">bKash Payment</div>
+
+        </div>
+
+
+        <div class="payment"
+             onclick="selectPayment('Nagad',this)">
+
+          <div class="payment-logo nagad">Nagad</div>
+          <div class="payment-name">Nagad Payment</div>
+
+        </div>
+
+      </div>
 
     </div>
 
@@ -466,65 +850,93 @@ label{
 
   <!-- SUMMARY -->
 
-  <div class="panel">
+  <div class="step-box">
 
-    <div class="panel-title">
-      <span class="step">4</span>
-      Order Summary
+    <div class="step-head">
+      <div class="step-number">4</div>
+      <h2>Order Summary</h2>
     </div>
 
-    <div class="summary">
+    <div class="step-body">
 
-      <div class="summary-row">
-        <span>Package</span>
-        <strong id="summaryPackage">Not selected</strong>
+      <div class="summary">
+
+        <div class="summary-row">
+          <span>Game UID</span>
+          <b id="sumUid">—</b>
+        </div>
+
+        <div class="summary-row">
+          <span>Package</span>
+          <b id="sumPackage">—</b>
+        </div>
+
+        <div class="summary-row">
+          <span>Payment</span>
+          <b id="sumPayment">—</b>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total</span>
+          <span id="sumPrice">৳0</span>
+        </div>
+
       </div>
 
-      <div class="summary-row">
-        <span>UID</span>
-        <strong id="summaryUID">Not entered</strong>
-      </div>
+      <br>
 
-      <div class="summary-row">
-        <span>Payment</span>
-        <strong id="summaryPayment">Not selected</strong>
-      </div>
+      <button class="order-button" onclick="continueOrder()">
+        Continue Order
+      </button>
 
-      <div class="summary-row total">
-        <span>Total</span>
-        <span>৳<span id="summaryPrice">0</span></span>
-      </div>
-
-    </div>
-
-    <button class="order-btn" onclick="continueOrder()">
-      CONTINUE ORDER
-    </button>
-
-    <div class="info">
-      ⚠️ বর্তমানে এটি একটি demo order system।
-      bKash/Nagad-এর আসল payment gateway এবং আসল game top-up API এখনো সংযুক্ত করা হয়নি।
     </div>
 
   </div>
 
-</main>
+</section>
 
-<footer class="footer">
-  © 2026 RS TOP-UP — All Rights Reserved
-</footer>
+</div>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+  <div class="nav-item" onclick="goHome()">
+    <span class="nav-icon">⌂</span>
+    Home
+  </div>
+
+  <div class="nav-item">
+    <span class="nav-icon">▣</span>
+    My Orders
+  </div>
+
+  <div class="nav-item">
+    <div class="add-money">+</div>
+    Add Money
+  </div>
+
+  <div class="nav-item">
+    <span class="nav-icon">▤</span>
+    My Codes
+  </div>
+
+  <div class="nav-item">
+    <span class="nav-icon">♙</span>
+    My Account
+  </div>
+
+</nav>
 
 
 <script>
 
-/* =========================
-   PACKAGE DATA
-========================= */
+/* ================= DATA ================= */
 
 const packageData = {
 
-  diamond: [
-
+  diamond:[
     ["25 Diamond TopUp",20],
     ["50 Diamond TopUp",36],
     ["100 Diamond TopUp",71],
@@ -541,11 +953,9 @@ const packageData = {
     ["5060 Diamond TopUp",3210],
     ["Weekly Membership",160],
     ["Monthly Membership",790]
-
   ],
 
-  weeklyMonthly: [
-
+  weeklyMonthly:[
     ["Weekly Membership",160],
     ["Monthly Membership",790],
     ["2X Weekly Package",319],
@@ -554,247 +964,259 @@ const packageData = {
     ["10X Weekly Package",1594],
     ["1X Weekly + 1X Monthly",949],
     ["2X Weekly + 2X Monthly",1898]
-
   ],
 
-  weeklyLite: [
-
+  weeklyLite:[
     ["1X Weekly Lite",45],
     ["2X Weekly Lite",89],
     ["3X Weekly Lite",133],
     ["5X Weekly Lite",221]
-
   ],
 
-  levelUp: [
-
+  levelUp:[
     ["Level Up Pass - Level 6",43],
     ["Level Up Pass - Level 10",75],
     ["Level Up Pass - Level 15",75],
     ["Level Up Pass - Level 20",75],
     ["Level Up Pass - Level 25",75],
     ["Level Up Pass - Level 30",106]
-
   ]
 
 };
 
 
-/* =========================
-   VARIABLES
-========================= */
+const names = {
+  diamond:"ID Code TopUp",
+  weeklyMonthly:"Weekly/Monthly",
+  weeklyLite:"Weekly Lite",
+  levelUp:"Level Up Pass"
+};
 
-let currentCategory = "diamond";
+
+/* ================= STATE ================= */
+
+let currentCategory = "";
 let selectedPackage = "";
 let selectedPrice = 0;
 let selectedPayment = "";
 
 
-/* =========================
-   SHOW PACKAGES
-========================= */
+/* ================= OPEN PRODUCT ================= */
 
-function showPackages(category){
-
-  const container = document.getElementById("packages");
-
-  container.innerHTML = "";
-
-  packageData[category].forEach(function(item){
-
-    const name = item[0];
-    const price = item[1];
-
-    const div = document.createElement("div");
-
-    div.className = "package";
-
-    div.innerHTML = `
-      <div class="package-name">${name}</div>
-      <div class="package-price">BDT ${price}</div>
-    `;
-
-    div.onclick = function(){
-
-      document.querySelectorAll(".package").forEach(function(p){
-        p.classList.remove("selected");
-      });
-
-      div.classList.add("selected");
-
-      selectedPackage = name;
-      selectedPrice = price;
-
-      document.getElementById("summaryPackage").textContent = name;
-      document.getElementById("summaryPrice").textContent = price;
-
-    };
-
-    container.appendChild(div);
-
-  });
-
-}
-
-
-/* =========================
-   CHANGE CATEGORY
-========================= */
-
-function changeCategory(category, element){
+function openProduct(category){
 
   currentCategory = category;
 
   selectedPackage = "";
   selectedPrice = 0;
+  selectedPayment = "";
 
-  document.querySelectorAll(".category").forEach(function(item){
-    item.classList.remove("active");
+  document.getElementById("homePage").style.display="none";
+  document.getElementById("productPage").classList.add("active");
+
+  document.getElementById("productTitle").innerText =
+    names[category];
+
+  document.getElementById("productIcon").innerHTML =
+    category === "diamond"
+    ? "💎<br>DIAMOND<br>TOPUP"
+    : category === "weeklyMonthly"
+    ? "WEEKLY<br>MONTHLY"
+    : category === "weeklyLite"
+    ? "WEEKLY<br>LITE"
+    : "LEVEL UP<br>PASS";
+
+  loadPackages();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
   });
+}
 
-  element.classList.add("active");
 
-  document.getElementById("summaryPackage").textContent =
-    "Not selected";
+/* ================= HOME ================= */
 
-  document.getElementById("summaryPrice").textContent =
-    "0";
+function goHome(){
 
-  showPackages(category);
+  document.getElementById("productPage")
+    .classList.remove("active");
+
+  document.getElementById("homePage")
+    .style.display="block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
 
-/* =========================
-   UID INPUT
-========================= */
+/* ================= PACKAGES ================= */
 
-document.getElementById("uid").addEventListener("input",function(){
+function loadPackages(){
 
-  this.value = this.value.replace(/[^0-9]/g,"");
+  const box =
+    document.getElementById("packages");
 
-  document.getElementById("summaryUID").textContent =
-    this.value === "" ? "Not entered" : this.value;
+  box.innerHTML="";
 
-});
+  packageData[currentCategory].forEach(item=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="package";
+
+    div.innerHTML=`
+      <div class="package-name">
+        ${item[0]}
+      </div>
+
+      <div class="package-price">
+        BDT ${item[1]}
+      </div>
+    `;
+
+    div.onclick=()=>{
+
+      document
+        .querySelectorAll(".package")
+        .forEach(p=>{
+          p.classList.remove("selected");
+        });
+
+      div.classList.add("selected");
+
+      selectedPackage=item[0];
+      selectedPrice=item[1];
+
+      updateSummary();
+
+    };
+
+    box.appendChild(div);
+
+  });
+
+}
 
 
-/* =========================
-   GAME NAME CHECK
-========================= */
+/* ================= UID ================= */
+
+document
+  .getElementById("uid")
+  .addEventListener("input",function(){
+
+    this.value =
+      this.value.replace(/[^0-9]/g,"");
+
+    updateSummary();
+
+  });
+
+
+/* ================= GAME NAME ================= */
 
 function checkGameName(){
 
   const uid =
     document.getElementById("uid").value.trim();
 
-  if(uid === ""){
+  if(!uid){
 
     alert("আগে আপনার Free Fire UID লিখুন।");
-
     return;
+
   }
 
-  /*
-    এখানে এখন demo message দেখানো হচ্ছে।
-    আসল Game Name API পরে যুক্ত করা যাবে।
-  */
-
-  document.getElementById("gameName").textContent =
-    "✓ UID গ্রহণ করা হয়েছে: " + uid;
+  document
+    .getElementById("gameResult")
+    .style.display="block";
 
 }
 
 
-/* =========================
-   PAYMENT
-========================= */
+/* ================= PAYMENT ================= */
 
-function selectPayment(input){
+function selectPayment(payment,element){
 
-  selectedPayment = input.value;
+  selectedPayment=payment;
 
-  document.querySelectorAll(".payment-option").forEach(function(option){
+  document
+    .querySelectorAll(".payment")
+    .forEach(p=>{
+      p.classList.remove("selected");
+    });
 
-    option.classList.remove("selected");
+  element.classList.add("selected");
 
-  });
-
-  input.parentElement.classList.add("selected");
-
-  document.getElementById("summaryPayment").textContent =
-    selectedPayment;
+  updateSummary();
 
 }
 
 
-/* =========================
-   CONTINUE ORDER
-========================= */
+/* ================= SUMMARY ================= */
+
+function updateSummary(){
+
+  const uid =
+    document.getElementById("uid").value.trim();
+
+  document.getElementById("sumUid")
+    .innerText=uid || "—";
+
+  document.getElementById("sumPackage")
+    .innerText=selectedPackage || "—";
+
+  document.getElementById("sumPayment")
+    .innerText=selectedPayment || "—";
+
+  document.getElementById("sumPrice")
+    .innerText="৳"+selectedPrice;
+
+}
+
+
+/* ================= ORDER ================= */
 
 function continueOrder(){
 
   const uid =
     document.getElementById("uid").value.trim();
 
-
-  if(uid === ""){
-
-    alert("Please enter your Free Fire UID.");
-
+  if(!uid){
+    alert("আপনার Free Fire UID লিখুন।");
     return;
   }
 
-
-  if(selectedPackage === ""){
-
-    alert("Please select a package.");
-
+  if(!selectedPackage){
+    alert("একটি Package Select করুন।");
     return;
   }
 
-
-  if(selectedPayment === ""){
-
-    alert("Please select bKash or Nagad.");
-
+  if(!selectedPayment){
+    alert("bKash অথবা Nagad Select করুন।");
     return;
   }
-
 
   const orderId =
-    "RS" +
-    Date.now().toString().slice(-8);
-
+    "RS"+Date.now().toString().slice(-8);
 
   alert(
-
-    "Order Preview\n\n" +
-
-    "Order ID: " + orderId + "\n" +
-
-    "UID: " + uid + "\n" +
-
-    "Package: " + selectedPackage + "\n" +
-
-    "Price: ৳" + selectedPrice + "\n" +
-
-    "Payment: " + selectedPayment + "\n\n" +
-
-    "Payment gateway is not connected yet."
-
+    "Order Preview\n\n"+
+    "Order ID: "+orderId+"\n"+
+    "UID: "+uid+"\n"+
+    "Package: "+selectedPackage+"\n"+
+    "Price: ৳"+selectedPrice+"\n"+
+    "Payment: "+selectedPayment+
+    "\n\nPayment gateway এখনো সংযুক্ত হয়নি।"
   );
 
 }
 
-
-/* =========================
-   FIRST LOAD
-========================= */
-
-showPackages("diamond");
-
 </script>
 
 </body>
-</html>
+  </html>
