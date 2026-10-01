@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>RS Top-Up | Free Fire Diamond</title>
+  <title>RS TOP-UP | Free Fire Diamond</title>
 
   <style>
     * {
@@ -16,7 +15,7 @@
 
     body {
       background: #080d1c;
-      color: #ffffff;
+      color: #fff;
       min-height: 100vh;
     }
 
@@ -53,7 +52,7 @@
       border-radius: 18px;
       padding: 20px;
       margin-bottom: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
 
     .card-title {
@@ -100,7 +99,7 @@
       border-radius: 12px;
       cursor: pointer;
       text-align: center;
-      transition: 0.2s;
+      transition: .2s;
     }
 
     .package:hover {
@@ -144,6 +143,8 @@
 
     .summary-row strong {
       color: white;
+      max-width: 60%;
+      overflow-wrap: anywhere;
     }
 
     .total {
@@ -213,51 +214,40 @@
 
     <div class="card">
 
-      <div class="card-title">
-        Create Your Order
-      </div>
+      <div class="card-title">Create Your Order</div>
 
       <label for="uid">Free Fire UID</label>
 
+      <!-- UID: Copy + Paste supported -->
       <input
-        type="number"
+        type="text"
         id="uid"
         placeholder="Enter your Free Fire UID"
         inputmode="numeric"
+        autocomplete="off"
+        maxlength="20"
       >
 
       <label>Select Diamond Package</label>
 
       <div class="packages">
 
-        <button
-          class="package"
-          onclick="selectPackage(this, 100, 80)"
-        >
+        <button class="package" onclick="selectPackage(this,100,80)">
           <div class="diamond">💎 100</div>
           <div class="price">৳80</div>
         </button>
 
-        <button
-          class="package"
-          onclick="selectPackage(this, 310, 220)"
-        >
+        <button class="package" onclick="selectPackage(this,310,220)">
           <div class="diamond">💎 310</div>
           <div class="price">৳220</div>
         </button>
 
-        <button
-          class="package"
-          onclick="selectPackage(this, 520, 350)"
-        >
+        <button class="package" onclick="selectPackage(this,520,350)">
           <div class="diamond">💎 520</div>
           <div class="price">৳350</div>
         </button>
 
-        <button
-          class="package"
-          onclick="selectPackage(this, 1060, 700)"
-        >
+        <button class="package" onclick="selectPackage(this,1060,700)">
           <div class="diamond">💎 1060</div>
           <div class="price">৳700</div>
         </button>
@@ -306,12 +296,10 @@
 
   </div>
 
-
   <script>
 
     let selectedDiamond = 0;
     let selectedPrice = 0;
-
 
     function selectPackage(button, diamond, price) {
 
@@ -336,14 +324,21 @@
 
     document.getElementById("uid").addEventListener("input", function() {
 
+      // শুধু সংখ্যা রাখবে
+      this.value = this.value.replace(/[^0-9]/g, "");
+
       const uid = this.value.trim();
 
       if (uid === "") {
+
         document.getElementById("summaryUID").textContent =
           "Not entered";
+
       } else {
+
         document.getElementById("summaryUID").textContent =
           uid;
+
       }
 
     });
@@ -354,13 +349,17 @@
       const uid = document.getElementById("uid").value.trim();
 
       if (uid === "") {
+
         alert("Please enter your Free Fire UID.");
         return;
+
       }
 
       if (selectedDiamond === 0) {
+
         alert("Please select a Diamond package.");
         return;
+
       }
 
       const orderId =
@@ -368,15 +367,16 @@
 
       alert(
         "Order Preview\n\n" +
-        "Order ID: " + orderId +
-        "\nUID: " + uid +
-        "\nDiamonds: " + selectedDiamond +
-        "\nPrice: ৳" + selectedPrice +
-        "\n\nPayment and real top-up are not connected yet."
+        "Order ID: " + orderId + "\n" +
+        "UID: " + uid + "\n" +
+        "Diamonds: " + selectedDiamond + "\n" +
+        "Price: ৳" + selectedPrice + "\n\n" +
+        "Payment and real top-up are not connected yet."
       );
+
     }
 
   </script>
 
 </body>
-  </html>
+</html>
