@@ -1,382 +1,545 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS TOP-UP | Free Fire Diamond</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<title>RS TOP-UP | Free Fire</title>
 
-    body {
-      background: #080d1c;
-      color: #fff;
-      min-height: 100vh;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    .container {
-      width: 100%;
-      max-width: 520px;
-      margin: auto;
-      padding: 20px 15px 35px;
-    }
+body{
+  background:#080d1c;
+  color:#fff;
+  min-height:100vh;
+}
 
-    .header {
-      text-align: center;
-      padding: 25px 10px;
-    }
+.container{
+  width:100%;
+  max-width:520px;
+  margin:auto;
+  padding:20px 15px 35px;
+}
 
-    .logo {
-      font-size: 38px;
-      margin-bottom: 8px;
-    }
+.header{
+  text-align:center;
+  padding:25px 10px;
+}
 
-    .header h1 {
-      font-size: 30px;
-      margin-bottom: 7px;
-    }
+.logo{
+  font-size:42px;
+  margin-bottom:8px;
+}
 
-    .header p {
-      color: #9ca6bd;
-      font-size: 14px;
-    }
+.header h1{
+  font-size:30px;
+  margin-bottom:7px;
+}
 
-    .card {
-      background: #121a2d;
-      border: 1px solid #263452;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
+.header p{
+  color:#9ca6bd;
+  font-size:14px;
+}
 
-    .card-title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 18px;
-    }
+/* CATEGORY */
 
-    label {
-      display: block;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 8px;
-      color: #dce3f2;
-    }
+.categories{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:16px;
+}
 
-    input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #344362;
-      background: #0b1122;
-      color: white;
-      font-size: 16px;
-      outline: none;
-      margin-bottom: 18px;
-    }
+.category{
+  border:1px solid #344362;
+  background:#121a2d;
+  color:white;
+  padding:15px 8px;
+  border-radius:13px;
+  cursor:pointer;
+  text-align:center;
+  font-size:14px;
+  font-weight:bold;
+}
 
-    input:focus {
-      border-color: #3b82f6;
-    }
+.category.active{
+  border-color:#22c55e;
+  background:#183b2b;
+}
 
-    .packages {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+.category-icon{
+  display:block;
+  font-size:25px;
+  margin-bottom:7px;
+}
 
-    .package {
-      border: 1px solid #344362;
-      background: #19233b;
-      color: white;
-      padding: 15px 8px;
-      border-radius: 12px;
-      cursor: pointer;
-      text-align: center;
-      transition: .2s;
-    }
+/* CARD */
 
-    .package:hover {
-      background: #22304e;
-    }
+.card{
+  background:#121a2d;
+  border:1px solid #263452;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
 
-    .package.active {
-      border-color: #22c55e;
-      background: #183b2b;
-    }
+.card-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
 
-    .diamond {
-      font-size: 17px;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
+label{
+  display:block;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:8px;
+  color:#dce3f2;
+}
 
-    .price {
-      color: #9ee6b5;
-      font-size: 14px;
-    }
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #344362;
+  background:#0b1122;
+  color:white;
+  font-size:16px;
+  outline:none;
+  margin-bottom:18px;
+}
 
-    .summary {
-      background: #0b1122;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 18px;
-    }
+input:focus{
+  border-color:#3b82f6;
+}
 
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      color: #b8c2d6;
-      border-bottom: 1px solid #202c45;
-    }
+/* PACKAGES */
 
-    .summary-row:last-child {
-      border-bottom: none;
-    }
+.packages{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
 
-    .summary-row strong {
-      color: white;
-      max-width: 60%;
-      overflow-wrap: anywhere;
-    }
+.package{
+  border:1px solid #344362;
+  background:#19233b;
+  color:white;
+  padding:15px 8px;
+  border-radius:12px;
+  cursor:pointer;
+  text-align:center;
+}
 
-    .total {
-      font-size: 18px;
-    }
+.package:hover{
+  background:#22304e;
+}
 
-    .btn {
-      width: 100%;
-      border: none;
-      border-radius: 11px;
-      padding: 15px;
-      margin-top: 18px;
-      background: #22c55e;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.package.active{
+  border-color:#22c55e;
+  background:#183b2b;
+}
 
-    .btn:hover {
-      background: #16a34a;
-    }
+.package-name{
+  font-size:16px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
 
-    .security {
-      text-align: center;
-      color: #9ca6bd;
-      font-size: 13px;
-      line-height: 1.6;
-      margin-top: 15px;
-    }
+.package-info{
+  color:#b8c2d6;
+  font-size:13px;
+  margin-bottom:6px;
+}
 
-    .notice {
-      background: #172033;
-      border: 1px solid #293750;
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 16px;
-      color: #aeb9ce;
-      font-size: 13px;
-      line-height: 1.6;
-    }
+.price{
+  color:#9ee6b5;
+  font-size:15px;
+  font-weight:bold;
+}
 
-    footer {
-      text-align: center;
-      color: #68738a;
-      font-size: 12px;
-      padding-top: 15px;
-    }
+/* SUMMARY */
 
-    @media (max-width: 380px) {
-      .packages {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.summary{
+  background:#0b1122;
+  border-radius:12px;
+  padding:15px;
+  margin-top:18px;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 0;
+  color:#b8c2d6;
+  border-bottom:1px solid #202c45;
+}
+
+.summary-row:last-child{
+  border-bottom:none;
+}
+
+.summary-row strong{
+  color:white;
+  text-align:right;
+  max-width:60%;
+  overflow-wrap:anywhere;
+}
+
+.total{
+  font-size:18px;
+}
+
+/* BUTTON */
+
+.btn{
+  width:100%;
+  border:none;
+  border-radius:11px;
+  padding:15px;
+  margin-top:18px;
+  background:#22c55e;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#16a34a;
+}
+
+.security{
+  text-align:center;
+  color:#9ca6bd;
+  font-size:13px;
+  line-height:1.6;
+  margin-top:15px;
+}
+
+.notice{
+  background:#172033;
+  border:1px solid #293750;
+  border-radius:12px;
+  padding:14px;
+  margin-top:16px;
+  color:#aeb9ce;
+  font-size:13px;
+  line-height:1.6;
+}
+
+footer{
+  text-align:center;
+  color:#68738a;
+  font-size:12px;
+  padding-top:15px;
+}
+
+@media(max-width:380px){
+  .packages{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <header class="header">
-      <div class="logo">💎</div>
-      <h1>RS TOP-UP</h1>
-      <p>Free Fire Diamond Top-Up</p>
-    </header>
+<header class="header">
+  <div class="logo">💎</div>
+  <h1>RS TOP-UP</h1>
+  <p>Free Fire Top-Up Center</p>
+</header>
 
-    <div class="card">
 
-      <div class="card-title">Create Your Order</div>
+<!-- CATEGORIES -->
 
-      <label for="uid">Free Fire UID</label>
+<div class="categories">
 
-      <!-- UID: Copy + Paste supported -->
-      <input
-        type="text"
-        id="uid"
-        placeholder="Enter your Free Fire UID"
-        inputmode="numeric"
-        autocomplete="off"
-        maxlength="20"
-      >
+  <button class="category active"
+    onclick="changeCategory('diamond',this)">
+    <span class="category-icon">💎</span>
+    Diamond
+  </button>
 
-      <label>Select Diamond Package</label>
+  <button class="category"
+    onclick="changeCategory('weekly',this)">
+    <span class="category-icon">📅</span>
+    Weekly
+  </button>
 
-      <div class="packages">
+  <button class="category"
+    onclick="changeCategory('weeklylite',this)">
+    <span class="category-icon">⚡</span>
+    Weekly Lite
+  </button>
 
-        <button class="package" onclick="selectPackage(this,100,80)">
-          <div class="diamond">💎 100</div>
-          <div class="price">৳80</div>
-        </button>
+  <button class="category"
+    onclick="changeCategory('monthly',this)">
+    <span class="category-icon">🗓️</span>
+    Monthly
+  </button>
 
-        <button class="package" onclick="selectPackage(this,310,220)">
-          <div class="diamond">💎 310</div>
-          <div class="price">৳220</div>
-        </button>
+  <button class="category"
+    onclick="changeCategory('levelup',this)">
+    <span class="category-icon">🎟️</span>
+    Level Up Pass
+  </button>
 
-        <button class="package" onclick="selectPackage(this,520,350)">
-          <div class="diamond">💎 520</div>
-          <div class="price">৳350</div>
-        </button>
+</div>
 
-        <button class="package" onclick="selectPackage(this,1060,700)">
-          <div class="diamond">💎 1060</div>
-          <div class="price">৳700</div>
-        </button>
 
-      </div>
+<div class="card">
 
-      <div class="summary">
+  <div class="card-title" id="categoryTitle">
+    💎 Diamond Top-Up
+  </div>
 
-        <div class="summary-row">
-          <span>UID</span>
-          <strong id="summaryUID">Not entered</strong>
-        </div>
+  <label for="uid">Free Fire UID</label>
 
-        <div class="summary-row">
-          <span>Diamonds</span>
-          <strong id="summaryDiamond">Not selected</strong>
-        </div>
+  <input
+    type="text"
+    id="uid"
+    placeholder="Enter your Free Fire UID"
+    inputmode="numeric"
+    autocomplete="off"
+    maxlength="20"
+  >
 
-        <div class="summary-row total">
-          <span>Total</span>
-          <strong id="summaryPrice">৳0</strong>
-        </div>
+  <label>Select Package</label>
 
-      </div>
+  <div class="packages" id="packages"></div>
 
-      <button class="btn" onclick="continueOrder()">
-        CONTINUE ORDER
-      </button>
 
-      <div class="security">
-        🔒 নিরাপত্তার জন্য কোনো Free Fire password বা OTP প্রয়োজন নেই।
-      </div>
+  <div class="summary">
 
-      <div class="notice">
-        ⚠️ বর্তমানে এটি website/order interface।
-        Payment এবং real diamond delivery এখনো সংযুক্ত করা হয়নি।
-        পরবর্তী ধাপে secure backend, payment এবং অনুমোদিত top-up provider
-        সংযুক্ত করা হবে।
-      </div>
-
+    <div class="summary-row">
+      <span>UID</span>
+      <strong id="summaryUID">Not entered</strong>
     </div>
 
-    <footer>
-      © 2026 RS TOP-UP
-    </footer>
+    <div class="summary-row">
+      <span>Package</span>
+      <strong id="summaryPackage">Not selected</strong>
+    </div>
+
+    <div class="summary-row total">
+      <span>Total</span>
+      <strong id="summaryPrice">৳0</strong>
+    </div>
 
   </div>
 
-  <script>
 
-    let selectedDiamond = 0;
-    let selectedPrice = 0;
+  <button class="btn" onclick="continueOrder()">
+    CONTINUE ORDER
+  </button>
 
-    function selectPackage(button, diamond, price) {
 
-      selectedDiamond = diamond;
-      selectedPrice = price;
+  <div class="security">
+    🔒 কোনো Free Fire password বা OTP প্রয়োজন নেই।
+  </div>
 
-      const packages = document.querySelectorAll(".package");
 
-      packages.forEach(function(item) {
-        item.classList.remove("active");
+  <div class="notice">
+    ⚠️ বর্তমানে এটি website/order interface।
+    Payment এবং real diamond/membership delivery এখনো সংযুক্ত করা হয়নি।
+  </div>
+
+</div>
+
+
+<footer>
+  © 2026 RS TOP-UP
+</footer>
+
+</div>
+
+
+<script>
+
+let currentCategory = "diamond";
+let selectedPackage = "";
+let selectedPrice = 0;
+
+
+/* PACKAGE DATA */
+
+const packageData = {
+
+  diamond: [
+    ["💎 100 Diamonds","100 Diamonds",80],
+    ["💎 310 Diamonds","310 Diamonds",220],
+    ["💎 520 Diamonds","520 Diamonds",350],
+    ["💎 1060 Diamonds","1060 Diamonds",700]
+  ],
+
+  weekly: [
+    ["📅 Weekly","Weekly Membership",150],
+    ["📅 Weekly Plus","Weekly Membership",250]
+  ],
+
+  weeklylite: [
+    ["⚡ Weekly Lite","Weekly Lite",80],
+    ["⚡ Weekly Lite Plus","Weekly Lite",120]
+  ],
+
+  monthly: [
+    ["🗓️ Monthly","Monthly Membership",450],
+    ["🗓️ Monthly Plus","Monthly Membership",650]
+  ],
+
+  levelup: [
+    ["🎟️ Level Up Pass","Level Up Pass",250],
+    ["🎟️ Level Up Pass Plus","Level Up Pass",400]
+  ]
+
+};
+
+
+/* CATEGORY CHANGE */
+
+function changeCategory(category,button){
+
+  currentCategory = category;
+
+  selectedPackage = "";
+  selectedPrice = 0;
+
+  document.querySelectorAll(".category").forEach(function(item){
+    item.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  const titles = {
+
+    diamond:"💎 Diamond Top-Up",
+    weekly:"📅 Weekly Membership",
+    weeklylite:"⚡ Weekly Lite",
+    monthly:"🗓️ Monthly Membership",
+    levelup:"🎟️ Level Up Pass"
+
+  };
+
+  document.getElementById("categoryTitle").textContent =
+    titles[category];
+
+  document.getElementById("summaryPackage").textContent =
+    "Not selected";
+
+  document.getElementById("summaryPrice").textContent =
+    "৳0";
+
+  showPackages(category);
+}
+
+
+/* SHOW PACKAGES */
+
+function showPackages(category){
+
+  const container = document.getElementById("packages");
+
+  container.innerHTML = "";
+
+  packageData[category].forEach(function(item){
+
+    const button = document.createElement("button");
+
+    button.className = "package";
+
+    button.innerHTML =
+      '<div class="package-name">' + item[0] + '</div>' +
+      '<div class="package-info">' + item[1] + '</div>' +
+      '<div class="price">৳' + item[2] + '</div>';
+
+    button.onclick = function(){
+
+      document.querySelectorAll(".package").forEach(function(p){
+        p.classList.remove("active");
       });
 
       button.classList.add("active");
 
-      document.getElementById("summaryDiamond").textContent =
-        diamond + " Diamonds";
+      selectedPackage = item[1];
+      selectedPrice = item[2];
+
+      document.getElementById("summaryPackage").textContent =
+        selectedPackage;
 
       document.getElementById("summaryPrice").textContent =
-        "৳" + price;
-    }
+        "৳" + selectedPrice;
+    };
+
+    container.appendChild(button);
+
+  });
+
+}
 
 
-    document.getElementById("uid").addEventListener("input", function() {
+/* UID */
 
-      // শুধু সংখ্যা রাখবে
-      this.value = this.value.replace(/[^0-9]/g, "");
+document.getElementById("uid").addEventListener("input",function(){
 
-      const uid = this.value.trim();
+  this.value = this.value.replace(/[^0-9]/g,"");
 
-      if (uid === "") {
+  const uid = this.value.trim();
 
-        document.getElementById("summaryUID").textContent =
-          "Not entered";
+  document.getElementById("summaryUID").textContent =
+    uid === "" ? "Not entered" : uid;
 
-      } else {
-
-        document.getElementById("summaryUID").textContent =
-          uid;
-
-      }
-
-    });
+});
 
 
-    function continueOrder() {
+/* ORDER */
 
-      const uid = document.getElementById("uid").value.trim();
+function continueOrder(){
 
-      if (uid === "") {
+  const uid =
+    document.getElementById("uid").value.trim();
 
-        alert("Please enter your Free Fire UID.");
-        return;
+  if(uid === ""){
+    alert("Please enter your Free Fire UID.");
+    return;
+  }
 
-      }
+  if(selectedPackage === ""){
+    alert("Please select a package.");
+    return;
+  }
 
-      if (selectedDiamond === 0) {
+  const orderId =
+    "RS" + Date.now().toString().slice(-8);
 
-        alert("Please select a Diamond package.");
-        return;
+  alert(
+    "Order Preview\n\n" +
+    "Order ID: " + orderId + "\n" +
+    "UID: " + uid + "\n" +
+    "Package: " + selectedPackage + "\n" +
+    "Price: ৳" + selectedPrice + "\n\n" +
+    "Payment and real delivery are not connected yet."
+  );
 
-      }
+}
 
-      const orderId =
-        "RS" + Date.now().toString().slice(-8);
 
-      alert(
-        "Order Preview\n\n" +
-        "Order ID: " + orderId + "\n" +
-        "UID: " + uid + "\n" +
-        "Diamonds: " + selectedDiamond + "\n" +
-        "Price: ৳" + selectedPrice + "\n\n" +
-        "Payment and real top-up are not connected yet."
-      );
+/* FIRST LOAD */
 
-    }
+showPackages("diamond");
 
-  </script>
+</script>
 
 </body>
 </html>
