@@ -1,0 +1,17 @@
+{
+  "name": "rs-top-up-new",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "rs-topup-db",
+      "database_id": "b93f7036-b3fd-4578-acee-55af4c58a849"
+    }
+  ]
+}
