@@ -2,14 +2,34 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // ==============================
-    // CREATE ORDER API
-    // ==============================
-    if (url.pathname === "/api/order" && request.method === "POST") {
+    // ==========================================
+    // ADMIN AUTHENTICATION
+    // ==========================================
+
+    function isAdmin(request) {
+      const auth = request.headers.get("Authorization");
+
+      if (!auth || !auth.startsWith("Bearer ")) {
+        return false;
+      }
+
+      const token = auth.slice(7);
+
+      return env.ADMIN_TOKEN && token === env.ADMIN_TOKEN;
+    }
+
+
+    // ==========================================
+    // CREATE ORDER
+    // ==========================================
+
+    if (
+      url.pathname === "/api/order" &&
+      request.method === "POST"
+    ) {
       try {
         const data = await request.json();
 
-        // Required fields
         if (
           !data.order_id ||
           !data.uid ||
@@ -39,7 +59,8 @@ export default {
           );
         }
 
-        const transactionId = String(data.transaction_id).trim();
+        const transactionId =
+          String(data.transaction_id).trim();
 
         if (!transactionId) {
           return Response.json(
@@ -51,7 +72,6 @@ export default {
           );
         }
 
-        // Save order to D1
         await env.DB.prepare(`
           INSERT INTO orders
           (
@@ -77,7 +97,7 @@ export default {
 
         return Response.json({
           success: true,
-          message: "Order saved successfully",
+          message: "Order submitted successfully",
           order_id: data.order_id
         });
 
@@ -93,30 +113,167 @@ export default {
       }
     }
 
-    // ==============================
-    // OTHER METHODS
-    // ==============================
-    if (url.pathname === "/api/order") {
+
+    // ==========================================
+    // ADMIN - GET ORDERS
+    // ==========================================
+
+    if (
+      url.pathname === "/api/admin/orders" &&
+      request.method === "GET"
+    ) {
+      if (!isAdmin(request)) {
+        return Response.json(
+          {
+            success: false,
+            message: "Unauthorized"
+          },
+          { status: 401 }
+        );
+      }
+
+      try {
+        const result = await env.DB.prepare(`
+          SELECT
+            id,
+            order_id,
+            uid,
+            package_name,
+            price,
+            payment_method,
+            transaction_id,
+            status,
+            created_at
+          FROM orders
+          ORDER BY id DESC
+          LIMIT 100
+        `).all();
+
+        return Response.json({
+          success: true,
+          orders: result.results || []
+        });
+
+      } catch (error) {
+        return Response.json(
+          {
+            success: false,
+            message: "Could not load orders",
+            error: String(error)
+          },
+          { status: 500 }
+        );
+      }
+    }
+
+
+    // ==========================================
+    // ADMIN - UPDATE ORDER STATUS
+    // ==========================================
+
+    if (
+      url.pathname === "/api/admin/order/status" &&
+      request.method === "POST"
+    ) {
+      if (!isAdmin(request)) {
+        return Response.json(
+          {
+            success: false,
+            message: "Unauthorized"
+          },
+          { status: 401 }
+        );
+      }
+
+      try {
+        const data = await request.json();
+
+        if (!data.order_id || !data.status) {
+          return Response.json(
+            {
+              success: false,
+              message: "Order ID and status are required"
+            },
+            { status: 400 }
+          );
+        }
+
+        const allowedStatuses = [
+          "pending",
+          "paid",
+          "rejected"
+        ];
+
+        if (!allowedStatuses.includes(data.status)) {
+          return Response.json(
+            {
+              success: false,
+              message: "Invalid status"
+            },
+            { status: 400 }
+          );
+        }
+
+        const result = await env.DB.prepare(`
+          UPDATE orders
+          SET status = ?
+          WHERE order_id = ?
+        `)
+          .bind(
+            data.status,
+            data.order_id
+          )
+          .run();
+
+        if (!result.meta || result.meta.changes === 0) {
+          return Response.json(
+            {
+              success: false,
+              message: "Order not found"
+            },
+            { status: 404 }
+          );
+        }
+
+        return Response.json({
+          success: true,
+          message: "Order status updated",
+          order_id: data.order_id,
+          status: data.status
+        });
+
+      } catch (error) {
+        return Response.json(
+          {
+            success: false,
+            message: "Could not update order",
+            error: String(error)
+          },
+          { status: 500 }
+        );
+      }
+    }
+
+
+    // ==========================================
+    // API METHOD CHECK
+    // ==========================================
+
+    if (url.pathname.startsWith("/api/")) {
       return Response.json(
         {
           success: false,
-          message: "Only POST requests are allowed"
+          message: "API endpoint not found"
         },
-        { status: 405 }
+        { status: 404 }
       );
     }
 
-    // ==============================
-    // WORKER STATUS
-    // ==============================
-    return new Response(
-      "RS TOP-UP API is running.",
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "text/plain; charset=UTF-8"
-        }
-      }
-    );
+
+    // ==========================================
+    // SERVE WEBSITE FILES
+    // ==========================================
+
+    return env.ASSETS.fetch(request);
   }
 };
