@@ -9,13 +9,14 @@ export default {
       try {
         const data = await request.json();
 
-        // Check required order data
+        // Required fields
         if (
           !data.order_id ||
           !data.uid ||
           !data.package_name ||
           data.price === undefined ||
-          !data.payment_method
+          !data.payment_method ||
+          !data.transaction_id
         ) {
           return Response.json(
             {
@@ -26,21 +27,31 @@ export default {
           );
         }
 
-        // Convert price to number
         const price = Number(data.price);
 
         if (Number.isNaN(price)) {
           return Response.json(
             {
               success: false,
-              message: "Invalid price",
-              error: "Price must be a number"
+              message: "Invalid price"
             },
             { status: 400 }
           );
         }
 
-        // Save order to D1 database
+        const transactionId = String(data.transaction_id).trim();
+
+        if (!transactionId) {
+          return Response.json(
+            {
+              success: false,
+              message: "Transaction ID is required"
+            },
+            { status: 400 }
+          );
+        }
+
+        // Save order to D1
         await env.DB.prepare(`
           INSERT INTO orders
           (
@@ -49,20 +60,21 @@ export default {
             package_name,
             price,
             payment_method,
+            transaction_id,
             status
           )
-          VALUES (?, ?, ?, ?, ?, 'pending')
+          VALUES (?, ?, ?, ?, ?, ?, 'pending')
         `)
           .bind(
             String(data.order_id),
             String(data.uid),
             String(data.package_name),
             price,
-            String(data.payment_method)
+            String(data.payment_method),
+            transactionId
           )
           .run();
 
-        // Successful response
         return Response.json({
           success: true,
           message: "Order saved successfully",
@@ -70,8 +82,6 @@ export default {
         });
 
       } catch (error) {
-
-        // Detailed error for debugging
         return Response.json(
           {
             success: false,
@@ -84,9 +94,9 @@ export default {
     }
 
     // ==============================
-    // API STATUS
+    // OTHER METHODS
     // ==============================
-    if (url.pathname === "/api/order" && request.method !== "POST") {
+    if (url.pathname === "/api/order") {
       return Response.json(
         {
           success: false,
