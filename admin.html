@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RS TOP-UP Admin</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+
+    body{
+      background:#f5f3ff;
+      color:#222;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:auto;
+      padding:20px;
+    }
+
+    header{
+      background:linear-gradient(135deg,#6d28d9,#8b5cf6);
+      color:white;
+      padding:20px;
+      border-radius:16px;
+      margin-bottom:18px;
+    }
+
+    header h1{
+      font-size:24px;
+      margin-bottom:5px;
+    }
+
+    header p{
+      font-size:13px;
+      opacity:.9;
+    }
+
+    .card{
+      background:white;
+      border:1px solid #e5e1ef;
+      border-radius:15px;
+      padding:18px;
+      margin-bottom:18px;
+    }
+
+    .title{
+      font-size:18px;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+
+    input{
+      width:100%;
+      padding:13px;
+      border:1px solid #d8d2e6;
+      border-radius:10px;
+      outline:none;
+      font-size:14px;
+      margin-bottom:10px;
+    }
+
+    input:focus{
+      border-color:#7c3aed;
+    }
+
+    button{
+      border:0;
+      border-radius:9px;
+      padding:10px 14px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .login-btn{
+      background:#6d28d9;
+      color:white;
+      width:100%;
+      padding:13px;
+    }
+
+    .refresh-btn{
+      background:#6d28d9;
+      color:white;
+      margin-bottom:15px;
+    }
+
+    .logout-btn{
+      background:#fee2e2;
+      color:#b91c1c;
+      float:right;
+    }
+
+    .message{
+      padding:12px;
+      border-radius:10px;
+      margin-top:10px;
+      display:none;
+      font-size:13px;
+    }
+
+    .error{
+      background:#fef2f2;
+      color:#b91c1c;
+      display:block;
+    }
+
+    .success{
+      background:#ecfdf5;
+      color:#047857;
+      display:block;
+    }
+
+    .table-wrap{
+      overflow-x:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:950px;
+    }
+
+    th,
+    td{
+      padding:11px 9px;
+      border-bottom:1px solid #eee;
+      text-align:left;
+      font-size:13px;
+      vertical-align:top;
+    }
+
+    th{
+      background:#f7f3ff;
+      color:#5b21b6;
+      font-weight:800;
+    }
+
+    .status{
+      display:inline-block;
+      padding:5px 9px;
+      border-radius:20px;
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .pending{
+      background:#fef3c7;
+      color:#92400e;
+    }
+
+    .paid{
+      background:#dcfce7;
+      color:#166534;
+    }
+
+    .rejected{
+      background:#fee2e2;
+      color:#991b1b;
+    }
+
+    .paid-btn{
+      background:#16a34a;
+      color:white;
+      margin-right:5px;
+    }
+
+    .reject-btn{
+      background:#dc2626;
+      color:white;
+    }
+
+    .disabled-btn{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+
+    .empty{
+      text-align:center;
+      padding:30px;
+      color:#777;
+    }
+
+    .warning{
+      background:#fff7ed;
+      color:#9a3412;
+      padding:12px;
+      border-radius:10px;
+      font-size:12px;
+      line-height:1.5;
+      margin-bottom:15px;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    @media(max-width:600px){
+
+      .container{
+        padding:12px;
+      }
+
+      header h1{
+        font-size:20px;
+      }
+
+      .card{
+        padding:14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <button
+      class="logout-btn hidden"
+      id="logoutBtn"
+      onclick="logout()"
+    >
+      Logout
+    </button>
+
+    <h1>RS TOP-UP Admin</h1>
+    <p>Order Management Panel</p>
+  </header>
+
+
+  <!-- LOGIN -->
+  <div class="card" id="loginCard">
+
+    <div class="title">
+      🔐 Admin Login
+    </div>
+
+    <div class="warning">
+      Admin access is protected by the Worker secret.
+      Do not share your admin token with anyone.
+    </div>
+
+    <input
+      type="password"
+      id="adminToken"
+      placeholder="Enter Admin Token"
+      autocomplete="off"
+    >
+
+    <button
+      class="login-btn"
+      onclick="login()"
+    >
+      Login
+    </button>
+
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <!-- ADMIN PANEL -->
+  <div
+    class="card hidden"
+    id="adminPanel"
+  >
+
+    <div class="title">
+      📦 Orders
+    </div>
+
+    <button
+      class="refresh-btn"
+      onclick="loadOrders()"
+    >
+      🔄 Refresh Orders
+    </button>
+
+    <div
+      id="panelMessage"
+      class="message"
+    ></div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>UID</th>
+            <th>Package</th>
+            <th>Amount</th>
+            <th>Payment</th>
+            <th>Transaction ID</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="ordersBody">
+
+          <tr>
+            <td
+              colspan="9"
+              class="empty"
+            >
+              No orders loaded.
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  // ==========================================
+  // ADMIN TOKEN
+  // ==========================================
+
+  let adminToken =
+    sessionStorage.getItem("rs_admin_token") || "";
+
+
+  // ==========================================
+  // LOGIN
+  // ==========================================
+
+  async function login(){
+
+    const input =
+      document.getElementById("adminToken");
+
+    const token =
+      input.value.trim();
+
+    if(!token){
+
+      showLoginMessage(
+        "Please enter your Admin Token.",
+        "error"
+      );
+
+      return;
+    }
+
+    adminToken = token;
+
+    const result =
+      await verifyToken();
+
+    if(result){
+
+      sessionStorage.setItem(
+        "rs_admin_token",
+        adminToken
+      );
+
+      document
+        .getElementById("loginCard")
+        .classList.add("hidden");
+
+      document
+        .getElementById("adminPanel")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("logoutBtn")
+        .classList.remove("hidden");
+
+      loadOrders();
+
+    }else{
+
+      adminToken = "";
+
+      showLoginMessage(
+        "Invalid Admin Token.",
+        "error"
+      );
+
+    }
+
+  }
+
+
+  // ==========================================
+  // VERIFY TOKEN
+  // ==========================================
+
+  async function verifyToken(){
+
+    try{
+
+      const response =
+        await fetch(
+          "/api/admin/orders",
+          {
+            method:"GET",
+            headers:{
+              "Authorization":
+                "Bearer " + adminToken
+            }
+          }
+        );
+
+      return response.status === 200;
+
+    }catch(error){
+
+      showLoginMessage(
+        "Could not connect to server.",
+        "error"
+      );
+
+      return false;
+
+    }
+
+  }
+
+
+  // ==========================================
+  // LOAD ORDERS
+  // ==========================================
+
+  async function loadOrders(){
+
+    const body =
+      document.getElementById("ordersBody");
+
+    body.innerHTML = `
+      <tr>
+        <td colspan="9" class="empty">
+          Loading orders...
+        </td>
+      </tr>
+    `;
+
+    try{
+
+      const response =
+        await fetch(
+          "/api/admin/orders",
+          {
+            method:"GET",
+            headers:{
+              "Authorization":
+                "Bearer " + adminToken
+            }
+          }
+        );
+
+
+      if(response.status === 401){
+
+        logout();
+
+        return;
+      }
+
+
+      const data =
+        await response.json();
+
+
+      if(!data.success){
+
+        showPanelMessage(
+          data.message ||
+          "Could not load orders.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      renderOrders(
+        data.orders || []
+      );
+
+
+    }catch(error){
+
+      showPanelMessage(
+        "Could not connect to server.",
+        "error"
+      );
+
+      body.innerHTML = `
+        <tr>
+          <td colspan="9" class="empty">
+            Connection failed.
+          </td>
+        </tr>
+      `;
+
+    }
+
+  }
+
+
+  // ==========================================
+  // RENDER ORDERS
+  // ==========================================
+
+  function renderOrders(orders){
+
+    const body =
+      document.getElementById("ordersBody");
+
+
+    if(!orders.length){
+
+      body.innerHTML = `
+        <tr>
+          <td colspan="9" class="empty">
+            No orders found.
+          </td>
+        </tr>
+      `;
+
+      return;
+    }
+
+
+    body.innerHTML = "";
+
+
+    orders.forEach(order => {
+
+      const row =
+        document.createElement("tr");
+
+
+      let statusClass =
+        "pending";
+
+      if(order.status === "paid"){
+        statusClass = "paid";
+      }
+
+      if(order.status === "rejected"){
+        statusClass = "rejected";
+      }
+
+
+      let actions = "";
+
+
+      if(order.status === "pending"){
+
+        actions = `
+          <button
+            class="paid-btn"
+            onclick="changeStatus('${escapeValue(order.order_id)}','paid')"
+          >
+            Paid
+          </button>
+
+          <button
+            class="reject-btn"
+            onclick="changeStatus('${escapeValue(order.order_id)}','rejected')"
+          >
+            Reject
+          </button>
+        `;
+
+      }else{
+
+        actions = `
+          <span style="color:#777;font-size:12px;">
+            No action
+          </span>
+        `;
+
+      }
+
+
+      row.innerHTML = `
+
+        <td>
+          <strong>${escapeHtml(order.order_id)}</strong>
+        </td>
+
+        <td>
+          ${escapeHtml(order.uid)}
+        </td>
+
+        <td>
+          ${escapeHtml(order.package_name)}
+        </td>
+
+        <td>
+          ৳${Number(order.price || 0)}
+        </td>
+
+        <td>
+          ${escapeHtml(order.payment_method)}
+        </td>
+
+        <td>
+          <strong>
+            ${escapeHtml(order.transaction_id || "-")}
+          </strong>
+        </td>
+
+        <td>
+          <span class="status ${statusClass}">
+            ${escapeHtml(order.status)}
+          </span>
+        </td>
+
+        <td>
+          ${escapeHtml(order.created_at || "-")}
+        </td>
+
+        <td>
+          ${actions}
+        </td>
+
+      `;
+
+
+      body.appendChild(row);
+
+    });
+
+  }
+
+
+  // ==========================================
+  // CHANGE STATUS
+  // ==========================================
+
+  async function changeStatus(
+    orderId,
+    status
+  ){
+
+    const actionText =
+      status === "paid"
+        ? "mark this order as PAID"
+        : "reject this order";
+
+
+    const confirmed =
+      confirm(
+        "Are you sure you want to " +
+        actionText +
+        "?\n\n" +
+        "Order ID: " +
+        orderId
+      );
+
+
+    if(!confirmed){
+      return;
+    }
+
+
+    try{
+
+      const response =
+        await fetch(
+          "/api/admin/order/status",
+          {
+            method:"POST",
+
+            headers:{
+              "Content-Type":
+                "application/json",
+
+              "Authorization":
+                "Bearer " + adminToken
+            },
+
+            body:JSON.stringify({
+
+              order_id:orderId,
+
+              status:status
+
+            })
+
+          }
+        );
+
+
+      if(response.status === 401){
+
+        logout();
+
+        return;
+      }
+
+
+      const data =
+        await response.json();
+
+
+      if(data.success){
+
+        showPanelMessage(
+          "Order status updated successfully.",
+          "success"
+        );
+
+        loadOrders();
+
+      }else{
+
+        showPanelMessage(
+          data.message ||
+          "Could not update order.",
+          "error"
+        );
+
+      }
+
+
+    }catch(error){
+
+      showPanelMessage(
+        "Could not connect to server.",
+        "error"
+      );
+
+    }
+
+  }
+
+
+  // ==========================================
+  // LOGOUT
+  // ==========================================
+
+  function logout(){
+
+    sessionStorage.removeItem(
+      "rs_admin_token"
+    );
+
+    adminToken = "";
+
+    document
+      .getElementById("adminPanel")
+      .classList.add("hidden");
+
+    document
+      .getElementById("logoutBtn")
+      .classList.add("hidden");
+
+    document
+      .getElementById("loginCard")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("adminToken")
+      .value = "";
+
+  }
+
+
+  // ==========================================
+  // MESSAGES
+  // ==========================================
+
+  function showLoginMessage(
+    text,
+    type
+  ){
+
+    const box =
+      document.getElementById(
+        "loginMessage"
+      );
+
+    box.className =
+      "message " + type;
+
+    box.innerText = text;
+
+  }
+
+
+  function showPanelMessage(
+    text,
+    type
+  ){
+
+    const box =
+      document.getElementById(
+        "panelMessage"
+      );
+
+    box.className =
+      "message " + type;
+
+    box.innerText = text;
+
+  }
+
+
+  // ==========================================
+  // SECURITY HELPERS
+  // ==========================================
+
+  function escapeHtml(value){
+
+    return String(value)
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#039;");
+
+  }
+
+
+  function escapeValue(value){
+
+    return String(value)
+      .replace(/\\/g,"\\\\")
+      .replace(/'/g,"\\'");
+
+  }
+
+
+  // ==========================================
+  // AUTO LOGIN FROM SESSION
+  // ==========================================
+
+  if(adminToken){
+
+    verifyToken().then(valid => {
+
+      if(valid){
+
+        document
+          .getElementById("loginCard")
+          .classList.add("hidden");
+
+        document
+          .getElementById("adminPanel")
+          .classList.remove("hidden");
+
+        document
+          .getElementById("logoutBtn")
+          .classList.remove("hidden");
+
+        loadOrders();
+
+      }else{
+
+        sessionStorage.removeItem(
+          "rs_admin_token"
+        );
+
+        adminToken = "";
+
+      }
+
+    });
+
+  }
+
+</script>
+
+</body>
+</html>
