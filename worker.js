@@ -115,6 +115,77 @@ export default {
 
 
     // ==========================================
+    // CUSTOMER - CHECK ORDER STATUS
+    // ==========================================
+
+    if (
+      url.pathname === "/api/order/status" &&
+      request.method === "GET"
+    ) {
+      try {
+        const orderId = url.searchParams.get("order_id");
+
+        if (!orderId) {
+          return Response.json(
+            {
+              success: false,
+              message: "Order ID is required"
+            },
+            { status: 400 }
+          );
+        }
+
+        const result = await env.DB.prepare(`
+          SELECT
+            order_id,
+            package_name,
+            price,
+            payment_method,
+            status,
+            created_at
+          FROM orders
+          WHERE order_id = ?
+          LIMIT 1
+        `)
+          .bind(String(orderId).trim())
+          .first();
+
+        if (!result) {
+          return Response.json(
+            {
+              success: false,
+              message: "Order not found"
+            },
+            { status: 404 }
+          );
+        }
+
+        return Response.json({
+          success: true,
+          order: {
+            order_id: result.order_id,
+            package_name: result.package_name,
+            price: result.price,
+            payment_method: result.payment_method,
+            status: result.status,
+            created_at: result.created_at
+          }
+        });
+
+      } catch (error) {
+        return Response.json(
+          {
+            success: false,
+            message: "Could not check order status",
+            error: String(error)
+          },
+          { status: 500 }
+        );
+      }
+    }
+
+
+    // ==========================================
     // ADMIN - GET ORDERS
     // ==========================================
 
